@@ -51,7 +51,8 @@ export default async function FrontendLayout({ children }: { children: ReactNode
 
   return (
     <html lang="en-IN" className={`${inter.variable} ${jakarta.variable}`} suppressHydrationWarning>
-      <body>
+      {/* Browser extensions (e.g. Grammarly) add attributes to <body> before React loads */}
+      <body suppressHydrationWarning>
         {/* Enables reveal animations only when JS runs, so content never stays hidden */}
         <Script id="js-flag" strategy="beforeInteractive">
           {"document.documentElement.classList.add('js')"}

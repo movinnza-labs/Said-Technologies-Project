@@ -13,7 +13,6 @@ import { CaseCard, CaseCardPreviews, PostCard } from './PostCards'
 import { SolutionIndex, type SolutionRow } from './SolutionIndex'
 import { Steps } from './Steps'
 import { Ticker } from './Ticker'
-import './Education.css'
 
 /** Hand-picked items when the editor chose some, otherwise every top-level item in order. */
 const choose = <T extends SolutionDoc>(picked: (number | T)[] | null | undefined, all: T[]): T[] => {
@@ -52,7 +51,10 @@ type IndexSectionProps = {
   rows: SolutionRow[]
 }
 
-/** Heading row (kicker + heading left; intro + link right) above the numbered list with sticky photo. */
+/**
+ * Heading row (kicker, heading and any intro on the left; link on the right) above the numbered
+ * list with sticky photo. Identical for What We Do, Industries and Education.
+ */
 function IndexSection({ id, className, kicker, heading, intro, link, rows }: IndexSectionProps) {
   const l = resolveLink(link)
   return (
@@ -63,6 +65,7 @@ function IndexSection({ id, className, kicker, heading, intro, link, rows }: Ind
           kicker={kicker}
           heading={heading}
           intro={intro}
+          introBelow
           aside={l ? <TextLink href={l.href}>{l.label}</TextLink> : null}
         />
         <SolutionIndex rows={rows} />
@@ -118,10 +121,10 @@ export async function HomePage({ data }: { data: Homepage }) {
         link={resolveLink(about?.link)}
       />
 
-      {/* What We Do, Industries and Education share one layout: heading row + numbered list with sticky photo */}
+      {/* What We Do, Industries and Education share one layout; light backgrounds alternate white / tint / white */}
       <IndexSection
         id="services-title"
-        className="e-services"
+        className="e-section--alt"
         kicker={data.services?.kicker}
         heading={data.services?.heading}
         link={data.services?.link}
@@ -130,7 +133,7 @@ export async function HomePage({ data }: { data: Homepage }) {
 
       <IndexSection
         id="industries-title"
-        className="e-industries"
+        className="e-section--tint"
         kicker={data.industries?.kicker}
         heading={data.industries?.heading}
         intro={[data.industries?.intro]}
@@ -140,7 +143,7 @@ export async function HomePage({ data }: { data: Homepage }) {
 
       <IndexSection
         id="education-title"
-        className="e-edu on-dark"
+        className="e-section--alt"
         kicker={data.education?.kicker}
         heading={data.education?.heading}
         intro={[data.education?.lead, data.education?.body]}

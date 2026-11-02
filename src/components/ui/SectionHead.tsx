@@ -9,6 +9,8 @@ type Props = {
   intro?: (string | null | undefined)[]
   /** Action on the right: a text link or button. */
   aside?: ReactNode
+  /** Show the intro under the heading (left) instead of beside the action (right). */
+  introBelow?: boolean
   as?: 'h1' | 'h2'
 }
 
@@ -16,11 +18,12 @@ type Props = {
  * Section heading row with a bottom rule: kicker + headline on the left; intro and action on
  * the right, aligned to the bottom of the headline.
  */
-export function SectionHead({ id, kicker, heading, intro, aside, as: Tag = 'h2' }: Props) {
+export function SectionHead({ id, kicker, heading, intro, aside, introBelow = false, as: Tag = 'h2' }: Props) {
   const paras = (intro ?? []).filter((p): p is string => Boolean(p))
   if (!kicker && !heading && !aside && !paras.length) return null
+  const split = paras.length > 0 && !introBelow
   return (
-    <div className={`e-sec-head reveal${paras.length ? ' e-sec-head--split' : ''}`}>
+    <div className={`e-sec-head reveal${split ? ' e-sec-head--split' : ''}`}>
       <div>
         <Kicker>{kicker}</Kicker>
         {heading && (
@@ -28,8 +31,14 @@ export function SectionHead({ id, kicker, heading, intro, aside, as: Tag = 'h2' 
             {heading}
           </Tag>
         )}
+        {introBelow &&
+          paras.map((p) => (
+            <p className="e-sec-intro e-sec-intro--below" key={p.slice(0, 40)}>
+              {p}
+            </p>
+          ))}
       </div>
-      {paras.length ? (
+      {split ? (
         <div className="e-sec-aside">
           {paras.map((p) => (
             <p className="e-sec-intro" key={p.slice(0, 40)}>

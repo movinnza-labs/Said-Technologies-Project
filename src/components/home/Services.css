@@ -1,9 +1,5 @@
-/* "What We Do" numbered index; on desktop the hovered row drives a sticky photo panel. */
-.e-services {
-  background: #fbfefd;
-  border-block: 1px solid var(--line);
-}
-
+/* Numbered solution index (What We Do, Industries, Education); on desktop the hovered row
+   drives a sticky photo panel. */
 .e-svc {
   display: grid;
   gap: 48px;

@@ -102,6 +102,16 @@
   color: var(--ink-700);
 }
 
+/* Intro under the heading, in the left column */
+.e-sec-intro--below {
+  margin-top: 18px;
+  max-width: 44rem;
+}
+
+.e-sec-intro--below + .e-sec-intro--below {
+  margin-top: 10px;
+}
+
 .on-dark .e-sec-head {
   border-color: rgba(255, 255, 255, 0.12);
 }
