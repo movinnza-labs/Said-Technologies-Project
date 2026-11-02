@@ -1,0 +1,147 @@
+/* Mobile / tablet navigation drawer. */
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+}
+
+.drawer[hidden] {
+  display: none;
+}
+
+.drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--ink950-rgb), 0.5);
+}
+
+.drawer-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(420px, 100%);
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  animation: drawerIn 0.2s var(--ease);
+}
+
+@keyframes drawerIn {
+  from {
+    transform: translateX(16px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  padding: 0 var(--gutter);
+  border-bottom: 1px solid var(--line);
+}
+
+.drawer-head .logo-img {
+  height: 40px;
+}
+
+.drawer-close {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.drawer-body {
+  flex: 1 1;
+  overflow-y: auto;
+  padding: 8px var(--gutter) 24px;
+}
+
+.drawer-foot {
+  padding: 16px var(--gutter);
+  border-top: 1px solid var(--line);
+}
+
+.drawer-foot .e-btn {
+  width: 100%;
+  min-height: 48px;
+}
+
+.drawer-section {
+  border-bottom: 1px solid var(--line);
+}
+
+.drawer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawer-link {
+  display: block;
+  flex: 1 1;
+  padding: 12px 0;
+  min-height: 44px;
+  color: var(--ink-900);
+  text-decoration: none;
+}
+
+.drawer-top .drawer-link {
+  font: 700 17px/1.4 var(--font-body);
+}
+
+.drawer-toggle {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.drawer-group {
+  padding: 0 0 12px 12px;
+}
+
+.drawer-group[hidden],
+.drawer-sub[hidden] {
+  display: none;
+}
+
+.drawer-group .drawer-link {
+  font-size: 15px;
+  padding: 10px 0;
+}
+
+.drawer-sub {
+  padding: 0 0 8px 14px;
+  border-left: 2px solid var(--brand-100);
+  margin-left: 2px;
+}
+
+.drawer-sub a {
+  display: block;
+  padding: 8px 0;
+  color: var(--ink-700);
+  text-decoration: none;
+  font-size: 15px;
+}
+
+@media (min-width: 64rem) {
+  .drawer {
+    display: none;
+  }
+}

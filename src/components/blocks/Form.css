@@ -1,0 +1,314 @@
+/* Enquiry and career forms. */
+.e-form-layout {
+  display: grid;
+  gap: 32px;
+}
+
+@media (min-width: 64rem) {
+  .e-form-layout {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 48px;
+    align-items: start;
+  }
+}
+
+.e-form-card {
+  padding: clamp(24px, 4vw, 48px);
+  border-radius: 22px;
+  background: var(--card);
+  border: 1px solid rgba(13, 124, 116, 0.14);
+  box-shadow: 0 40px 80px -60px rgba(var(--ink950-rgb), 0.5);
+}
+
+/* On a white section the card takes the paper tone and fields turn white, keeping contrast */
+.e-section--alt .e-form-card {
+  background: var(--paper);
+}
+
+.e-section--alt .e-field input:not([type="radio"]):not([type="checkbox"]),
+.e-section--alt .e-field select,
+.e-section--alt .e-field textarea,
+.e-section--alt .e-pill span {
+  background-color: #fff;
+}
+
+.e-section--alt .e-aside-card:nth-child(even) {
+  background: var(--paper);
+}
+
+.e-form {
+  display: grid;
+  gap: 24px;
+}
+
+.e-form-grid {
+  display: grid;
+  gap: 20px;
+}
+
+@media (min-width: 40rem) {
+  .e-form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.e-field {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.e-field--wide {
+  grid-column: 1 / -1;
+}
+
+.e-field label,
+.e-field legend {
+  padding: 0;
+  font: 600 14px/1.4 var(--font-body);
+  color: var(--ink-900);
+}
+
+.e-field legend {
+  margin-bottom: 10px;
+}
+
+.e-req {
+  color: var(--gold-deep);
+}
+
+.e-opt {
+  font-weight: 400;
+  color: var(--ink-600);
+}
+
+.e-field input:not([type="radio"]):not([type="checkbox"]),
+.e-field select,
+.e-field textarea {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line-2);
+  background: var(--paper);
+  color: var(--ink-900);
+  font-size: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.e-field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* Custom chevron for dropdowns */
+.e-field select {
+  appearance: none;
+  padding-right: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d7c74' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  cursor: pointer;
+}
+
+/* File upload styled to match the form */
+.e-field input[type="file"] {
+  padding: 8px 10px;
+  color: var(--ink-600);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.e-field input[type="file"]::file-selector-button {
+  margin-right: 14px;
+  padding: 9px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--brand-600);
+  color: #fff;
+  font: 700 14px/1 var(--font-body);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.e-field input[type="file"]:hover::file-selector-button {
+  background: var(--ink-900);
+}
+
+.e-field input:hover,
+.e-field select:hover,
+.e-field textarea:hover {
+  border-color: var(--ink-600);
+}
+
+.e-field input:focus,
+.e-field select:focus,
+.e-field textarea:focus {
+  outline: none;
+  border-color: var(--brand-500);
+  background-color: #fff;
+  box-shadow: 0 0 0 4px var(--brand-100);
+}
+
+.e-field select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.has-error input,
+.has-error select,
+.has-error textarea {
+  border-color: var(--gold-deep) !important;
+}
+
+.e-field-error {
+  font-size: 13.5px;
+  color: #b4361c;
+}
+
+.e-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.e-pill {
+  position: relative;
+  cursor: pointer;
+}
+
+.e-pill input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.e-pill span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  background: var(--paper);
+  font: 600 15px/1 var(--font-body);
+  color: var(--ink-800);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.e-pill input:checked + span {
+  background: var(--brand-600);
+  border-color: var(--brand-600);
+  color: #fff;
+}
+
+.e-pill input:focus-visible + span {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+}
+
+.e-consent label {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 14.5px;
+  color: var(--ink-700);
+}
+
+.e-consent input {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--brand-600);
+}
+
+.e-form .e-btn {
+  justify-self: start;
+}
+
+.e-form-status {
+  padding: 16px 20px;
+  border-radius: 14px;
+  font-size: 15px;
+}
+
+.e-form-status:focus {
+  outline: none;
+}
+
+.e-form-status.is-error {
+  background: #fff1ec;
+  color: #8a2a14;
+  border: 1px solid #ffcdbd;
+}
+
+.e-form-status.is-success {
+  display: grid;
+  gap: 8px;
+  padding: 32px;
+  background: var(--brand-50);
+  border: 1px solid var(--brand-200);
+  color: var(--ink-800);
+}
+
+.e-form-status.is-success strong {
+  font: 700 24px/1.2 var(--font-display);
+  color: var(--brand-700);
+}
+
+/* Honeypot: off-screen for people, visible to bots */
+.e-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ---------- Side cards ---------- */
+.e-form-aside {
+  display: grid;
+  gap: 16px;
+}
+
+.e-aside-card {
+  padding: 26px;
+  border-radius: 18px;
+  background: var(--night);
+  color: var(--on-dark-text);
+}
+
+.e-aside-card:nth-child(even) {
+  background: var(--card);
+  color: var(--ink-700);
+  border: 1px solid var(--line);
+}
+
+.e-aside-card h3 {
+  font: 700 20px/1.25 var(--font-display);
+  color: var(--paper);
+}
+
+.e-aside-card:nth-child(even) h3 {
+  color: var(--ink-900);
+}
+
+.e-aside-card p {
+  margin-top: 10px;
+  font-size: 15px;
+  white-space: pre-line;
+}
+
+.e-aside-card .e-link {
+  margin-top: 16px;
+}
+
+.e-aside-card:nth-child(odd) .e-link {
+  color: var(--gold);
+}

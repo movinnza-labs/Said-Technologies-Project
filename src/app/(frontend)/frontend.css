@@ -1,0 +1,15 @@
+/* Layout-level rules. */
+
+.preview-bar {
+  position: relative;
+  z-index: 70;
+  padding: 8px var(--gutter);
+  background: var(--gold);
+  color: var(--ink-950);
+  font: 600 14px/1.4 var(--font-body);
+  text-align: center;
+}
+
+.preview-bar a {
+  color: inherit;
+}

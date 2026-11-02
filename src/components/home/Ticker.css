@@ -1,0 +1,94 @@
+/* Capability strip: each solution with its icon, scrolling as one seamless loop. */
+.e-ticker {
+  overflow: hidden;
+  background: var(--card);
+  border-block: 1px solid var(--line);
+  padding: 16px 0;
+}
+
+.e-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: eMarquee 70s linear infinite;
+}
+
+.e-ticker:hover .e-ticker-track {
+  animation-play-state: paused;
+}
+
+.e-ticker ul {
+  display: flex;
+  gap: 44px;
+  padding-right: 44px;
+}
+
+.e-ticker li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: 700 clamp(14.5px, 1.1vw, 16px)/1 var(--font-display);
+  letter-spacing: -0.005em;
+  color: var(--ink-900);
+  white-space: nowrap;
+}
+
+/* Flat solid icon chips in the site palette */
+.e-ticker-ic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--brand-600);
+}
+
+.e-ticker li.tone-1 .e-ticker-ic {
+  background: var(--gold);
+}
+
+.e-ticker li.tone-2 .e-ticker-ic {
+  background: #0ea5c6;
+}
+
+.e-ticker li.tone-3 .e-ticker-ic {
+  background: var(--ink-900);
+}
+
+/* 24px icon grid drawn at 18px, centred exactly in the circle */
+.e-ticker-ic svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes eMarquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .e-ticker-track {
+    width: auto;
+    animation: none;
+  }
+
+  .e-ticker ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 12px;
+    padding: 0 var(--gutter);
+  }
+
+  .e-ticker ul + ul {
+    display: none;
+  }
+}

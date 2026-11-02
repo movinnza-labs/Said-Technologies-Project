@@ -1,0 +1,65 @@
+/* Full-width call-to-action band over a photograph. */
+.e-cta {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: clamp(64px, 8vw, 112px) 0;
+  background: linear-gradient(135deg, #0a5f5a, #05282e);
+}
+
+.e-cta > img {
+  z-index: -2;
+  opacity: 0.45;
+  mix-blend-mode: luminosity;
+}
+
+.e-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg, rgba(4, 52, 56, 0.96) 30%, rgba(4, 52, 56, 0.55));
+}
+
+.e-cta::after {
+  content: "";
+  position: absolute;
+  right: -90px;
+  top: -90px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 1px solid rgba(95, 211, 191, 0.4);
+  z-index: -1;
+}
+
+/* Two dark bands in a row (process band, then CTA): keep them visibly separate */
+.on-dark + .e-cta {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.e-cta-inner {
+  display: grid;
+  gap: 32px;
+  align-items: center;
+}
+
+.e-cta-copy .e-h2 {
+  margin: 0;
+  max-width: 20ch;
+  color: var(--paper);
+}
+
+.e-cta-copy p {
+  margin-top: 18px;
+  max-width: 34rem;
+  color: #c6e4de;
+  font-size: 17px;
+}
+
+@media (min-width: 64rem) {
+  .e-cta-inner {
+    grid-template-columns: 1fr auto;
+    gap: 64px;
+  }
+}

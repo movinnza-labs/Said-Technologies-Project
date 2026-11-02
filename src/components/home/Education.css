@@ -1,0 +1,72 @@
+/* Education band: same numbered list as What We Do, on the deep night background. */
+.e-edu {
+  background: var(--night);
+  color: var(--on-dark-text);
+  overflow: hidden;
+}
+
+.e-edu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(60% 50% at 100% 0, rgba(255, 125, 92, 0.12), transparent 70%),
+    radial-gradient(50% 60% at 0 100%, rgba(20, 184, 166, 0.32), transparent 70%);
+}
+
+.e-edu .container {
+  position: relative;
+}
+
+.e-edu .e-h2 {
+  color: var(--paper);
+}
+
+/* ---------- List rows on dark ---------- */
+.on-dark .e-svc-list {
+  border-top-color: rgba(255, 255, 255, 0.4);
+}
+
+.on-dark .e-svc-row {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.on-dark .e-svc-title {
+  color: #fff;
+}
+
+.on-dark .e-svc-desc {
+  color: var(--on-dark-text);
+}
+
+.on-dark .e-svc-ic {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--brand-300);
+}
+
+.on-dark .e-svc-more {
+  color: var(--gold);
+}
+
+.on-dark .e-svc-row.is-on,
+.on-dark .e-svc-row:hover {
+  background: linear-gradient(90deg, rgba(95, 211, 191, 0.12), rgba(95, 211, 191, 0) 85%);
+}
+
+.on-dark .e-svc-row.is-on .e-svc-title,
+.on-dark .e-svc-row:hover .e-svc-title {
+  color: var(--brand-300);
+}
+
+.on-dark .e-svc-row.is-on .e-svc-ic,
+.on-dark .e-svc-row:hover .e-svc-ic {
+  background: var(--brand-600);
+  border-color: var(--brand-600);
+  color: var(--gold);
+}
+
+@media (min-width: 64rem) {
+  .on-dark .e-svc-stage {
+    box-shadow: 0 50px 90px -40px rgba(0, 0, 0, 0.6);
+  }
+}

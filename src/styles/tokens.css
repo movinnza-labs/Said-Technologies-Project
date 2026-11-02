@@ -1,0 +1,79 @@
+/* Design tokens: Design 4 "Editorial" palette, type and spacing. */
+:root {
+  /* Ink (text and dark surfaces) */
+  --ink-950: #041e24;
+  --ink-900: #0b2530;
+  --ink-800: #173a45;
+  --ink-700: #3c5a63;
+  --ink-600: #5f7a81;
+
+  /* Brand teal */
+  --brand-50: #e9faf6;
+  --brand-100: #cdf3ea;
+  --brand-200: #99e6d6;
+  --brand-300: #5fd3bf;
+  --brand-500: #14a395;
+  --brand-600: #0d7c74;
+  --brand-700: #0a5f5a;
+  --brand-800: #084a47;
+
+  /* RGB channels for translucent shadows and glows */
+  --ink950-rgb: 4, 30, 36;
+  --ink900-rgb: 11, 37, 48;
+  --b300-rgb: 95, 211, 191;
+  --b500-rgb: 20, 163, 149;
+  --b600-rgb: 13, 124, 116;
+
+  /* Surfaces */
+  --paper: #f4faf8;
+  --paper-2: #e6f4f0;
+  --card: #ffffff;
+  --line: #d3e7e2;
+  --line-2: #a9d1c8;
+  --night: #05282e;
+  --night-2: #04232a;
+  --surface: var(--paper);
+  --surface-alt: var(--paper-2);
+  --border: var(--line);
+  --on-dark-text: #b3d4ce;
+  --on-dark-strong: #e2f4f0;
+
+  /* Accent (coral) */
+  --gold: #ff7d5c;
+  --gold-soft: #ff9878;
+  --gold-deep: #e2583a;
+
+  /* Type */
+  --font-display: var(--font-jakarta, "Plus Jakarta Sans"), system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-body: var(--font-inter, "Inter"), system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Layout */
+  --container: 1280px;
+  --gutter: 16px;
+  --header-h: 64px;
+  --e-sec: clamp(72px, 10vw, 136px);
+
+  /* Shape and depth */
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --shadow: 0 8px 24px rgba(var(--ink900-rgb), 0.08);
+  --shadow-menu: 0 16px 40px rgba(var(--ink950-rgb), 0.16);
+
+  /* Motion */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --e-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --gutter: 24px;
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --gutter: 32px;
+    --header-h: 72px;
+  }
+}

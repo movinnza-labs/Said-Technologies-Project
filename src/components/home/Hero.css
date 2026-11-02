@@ -1,0 +1,566 @@
+/* Homepage hero: editorial headline left, animated solution hub right. */
+.e-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(32px, 5vw, 72px) 0 clamp(64px, 8vw, 112px);
+  background: linear-gradient(180deg, #f4faf8, #eef8f6);
+}
+
+.e-hero::before {
+  content: "";
+  position: absolute;
+  right: -14%;
+  top: -30%;
+  width: 64vw;
+  height: 64vw;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(closest-side, rgba(95, 211, 191, 0.3), rgba(56, 189, 248, 0.1) 55%, transparent 72%);
+}
+
+.e-hero::after {
+  content: "";
+  position: absolute;
+  left: -18vw;
+  bottom: -26vw;
+  width: 46vw;
+  height: 46vw;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(closest-side, rgba(255, 125, 92, 0.14), transparent 70%);
+}
+
+.e-hero-lines {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-evenly;
+  pointer-events: none;
+}
+
+.e-hero-lines span {
+  width: 1px;
+  background: linear-gradient(transparent, var(--line) 20%, var(--line) 80%, transparent);
+  opacity: 0.5;
+}
+
+.e-hero-lines span:not(:last-child) {
+  display: none;
+}
+
+.e-hero-grid {
+  position: relative;
+  display: grid;
+  gap: 56px;
+  align-items: center;
+}
+
+.e-display {
+  margin: 22px 0 24px;
+  font: 800 clamp(38px, 4.4vw, 64px)/1.05 var(--font-display);
+  letter-spacing: -0.03em;
+  color: var(--ink-900);
+}
+
+.e-display .w {
+  padding-bottom: 0.22em;
+  margin-bottom: -0.16em;
+}
+
+.e-display em {
+  display: block;
+  font-style: normal;
+  padding-bottom: 0.06em;
+  background: linear-gradient(100deg, #0d7c74, #14a395 45%, #0ea5c6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* When words are split, each word carries the gradient instead of the em */
+.e-display em:has(.w) {
+  background: none;
+}
+
+.e-display em .w > span {
+  background: linear-gradient(100deg, #0d7c74, #14a395 45%, #0ea5c6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.e-hero .e-lead {
+  max-width: 36rem;
+}
+
+.e-hero-cols {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-700);
+  max-width: 44rem;
+}
+
+.e-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.e-aside {
+  margin-top: 24px;
+  font-size: 15px;
+  color: var(--ink-600);
+}
+
+@media (min-width: 48rem) {
+  .e-hero-cols {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (min-width: 64rem) {
+  .e-hero-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 32px;
+    min-height: calc(100vh - var(--header-h) - 140px);
+  }
+
+  .e-display {
+    font-size: clamp(38px, 3.6vw, 54px);
+  }
+}
+
+@media (max-width: 63.99rem) {
+  .e-hero-lines {
+    display: none;
+  }
+}
+
+@media (max-width: 39.99rem) {
+  .e-actions .e-btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* ---------- Hub diagram ---------- */
+.hub-wrap {
+  --ent: #0d7c74;
+  --ent-rgb: 13, 124, 116;
+  --edu: #ff7d5c;
+  --edu-rgb: 255, 125, 92;
+  position: relative;
+  padding: 8px 0;
+}
+
+.hub {
+  position: relative;
+  width: min(100% - 48px, 640px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+@media (min-width: 64rem) {
+  .hub {
+    width: min(100% - 48px, 600px, calc(100vh - var(--header-h) - 150px));
+    min-width: 380px;
+  }
+}
+
+.hub::before {
+  content: "";
+  position: absolute;
+  inset: 14%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(95, 211, 191, 0.32), rgba(56, 189, 248, 0.12) 55%, transparent 75%);
+}
+
+.hub-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.orbit {
+  fill: none;
+  stroke-width: 0.3;
+  transform-origin: 50px 50px;
+}
+
+.orbit.o1 {
+  stroke: rgba(13, 124, 116, 0.25);
+  stroke-dasharray: 0.6 1.6;
+}
+
+.orbit.o2 {
+  stroke: rgba(255, 125, 92, 0.45);
+  stroke-dasharray: 3 2;
+}
+
+.hub-spoke {
+  stroke-width: 0.45;
+  stroke-dasharray: 1.4 1.4;
+  opacity: 0.55;
+  transition: stroke-width 0.3s, opacity 0.3s;
+}
+
+.hub-spoke.ent {
+  stroke: var(--ent);
+}
+
+.hub-spoke.edu {
+  stroke: var(--edu);
+}
+
+.hub-spoke.is-on {
+  stroke-width: 0.8;
+  opacity: 1;
+  stroke-dasharray: none;
+}
+
+/* Pulses travel from the centre out along each spoke */
+.hub-pulses {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hub-pulses li {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: pulseGo 2.8s ease-in-out var(--d) infinite;
+}
+
+.hub-pulses li::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+}
+
+.hub-pulses .ent::after {
+  background: var(--ent);
+  box-shadow: 0 0 0 4px rgba(var(--ent-rgb), 0.18);
+}
+
+.hub-pulses .edu::after {
+  background: var(--edu);
+  box-shadow: 0 0 0 4px rgba(var(--edu-rgb), 0.18);
+}
+
+@keyframes pulseGo {
+  0% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  25%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(var(--x) - 50%), calc(var(--y) - 50%));
+    opacity: 0;
+  }
+}
+
+.hub-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 42%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.hub-core::after {
+  content: "";
+  position: absolute;
+  inset: -6%;
+  border-radius: 50%;
+  border: 2px solid rgba(13, 124, 116, 0.35);
+  will-change: transform, opacity;
+  animation: ringBreath 3s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes ringBreath {
+  0% {
+    transform: scale(0.94);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.18);
+    opacity: 0;
+  }
+}
+
+.core-glow,
+.core-photo {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.core-glow {
+  inset: -14%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(var(--ent-rgb), 0),
+    rgba(var(--ent-rgb), 0.55),
+    rgba(251, 191, 36, 0.5),
+    rgba(var(--edu-rgb), 0.5),
+    rgba(var(--ent-rgb), 0)
+  );
+  -webkit-mask: radial-gradient(circle, transparent 62%, #000 63%, #000 70%, transparent 71%);
+  mask: radial-gradient(circle, transparent 62%, #000 63%, #000 70%, transparent 71%);
+  will-change: transform;
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.core-photo {
+  inset: 0;
+  overflow: hidden;
+  border: 5px solid #fff;
+  box-shadow: 0 30px 70px -24px rgba(13, 124, 116, 0.55), 0 0 0 10px rgba(95, 211, 191, 0.18);
+}
+
+.core-photo img {
+  object-position: 50% 35%;
+}
+
+.core-logo {
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(var(--ink900-rgb), 0.25);
+  white-space: nowrap;
+  width: max-content;
+}
+
+.core-logo img {
+  display: block;
+  height: 40px;
+  width: auto;
+  max-width: none;
+}
+
+.hub-nodes {
+  position: absolute;
+  inset: 0;
+}
+
+.hub-node {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 6px;
+  border-radius: 999px;
+  background: #fff;
+  white-space: nowrap;
+  font: 600 15px/1 var(--font-body);
+  color: var(--ink-900);
+  border: 1.5px solid rgba(var(--ent-rgb), 0.3);
+  box-shadow: 0 14px 30px -14px rgba(13, 124, 116, 0.45);
+  translate: -50% -50%;
+  opacity: 0;
+  scale: 0.7;
+  animation: nodeIn 0.55s cubic-bezier(0.2, 0.8, 0.2, 1.25) calc(0.6s + var(--i) * 0.1s) forwards;
+  transition: box-shadow 0.3s var(--ease), scale 0.3s var(--ease);
+}
+
+.hub-node.edu {
+  border-color: rgba(var(--edu-rgb), 0.35);
+}
+
+@keyframes nodeIn {
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.hn-ic {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-50);
+  color: var(--brand-600);
+}
+
+.hub-node.edu .hn-ic {
+  background: #fff0eb;
+  color: var(--gold-deep);
+}
+
+.hn-ic svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hub-node.is-on {
+  background: var(--ent);
+  color: #fff;
+  border-color: var(--ent);
+  box-shadow: 0 10px 26px rgba(var(--ent-rgb), 0.4);
+  scale: 1.08;
+}
+
+.hub-node.edu.is-on {
+  background: var(--edu);
+  border-color: var(--edu);
+  box-shadow: 0 10px 26px rgba(var(--edu-rgb), 0.4);
+}
+
+.hub-node.is-on .hn-ic {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.hub-legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 18px;
+  font-size: 14px;
+  color: var(--ink-700);
+}
+
+.hub-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hub-legend li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.hub-legend .ent::before {
+  background: var(--ent);
+}
+
+.hub-legend .edu::before {
+  background: var(--edu);
+}
+
+/* Phones: drop the orbit, stack the photo and wrap the labels below it */
+@media (max-width: 39.99rem) {
+  .hub {
+    width: 100%;
+    aspect-ratio: auto;
+  }
+
+  .hub::before {
+    inset: -10% 10% auto;
+    height: 80%;
+  }
+
+  .hub-lines,
+  .hub-pulses {
+    display: none;
+  }
+
+  .hub-core {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: 64%;
+    margin: 8px auto 0;
+  }
+
+  .core-logo {
+    padding: 6px 10px;
+    bottom: -14px;
+  }
+
+  .core-logo img {
+    height: 30px;
+  }
+
+  .hub-nodes {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 36px;
+  }
+
+  .hub-node {
+    position: static;
+    translate: none;
+    font-size: 13px;
+    gap: 6px;
+    padding: 5px 12px 5px 5px;
+  }
+
+  .hub-node.is-on {
+    scale: 1.04;
+  }
+
+  .hn-ic {
+    width: 24px;
+    height: 24px;
+  }
+
+  .hn-ic svg {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hub-node {
+    opacity: 1;
+    scale: 1;
+  }
+
+  .hub-pulses {
+    display: none;
+  }
+}

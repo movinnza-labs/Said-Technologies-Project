@@ -1,0 +1,147 @@
+/* Insights: a row of blog cards, then a row of case studies. Photos keep their natural shape. */
+.e-insights {
+  background: #eaf6f2;
+}
+
+.e-ins-sub {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.e-ins-sub h3 {
+  font: 700 26px/1.1 var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.e-cases + .e-ins-sub,
+.e-posts-grid + .e-ins-sub {
+  margin-top: 72px;
+}
+
+/* Blog card: full-width photo on top, body fills the rest so cards in a row are equal height */
+.e-post {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--card);
+  border: 1px solid rgba(13, 124, 116, 0.12);
+  transition: transform 0.5s var(--e-ease), box-shadow 0.5s;
+}
+
+.e-post:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 40px 70px -40px rgba(var(--ink950-rgb), 0.45);
+}
+
+.e-post:has(a:focus-visible) {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+}
+
+.e-post-photo,
+.e-case-photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-2);
+}
+
+/* 16:9 matches the blog photos, so nothing is cropped */
+.e-post-photo {
+  flex: none;
+  aspect-ratio: 16 / 9;
+}
+
+.e-post-photo img,
+.e-case-photo img {
+  transition: transform 1.2s var(--e-ease);
+}
+
+.e-post:hover .e-post-photo img,
+.e-case:hover .e-case-photo img {
+  transform: scale(1.04);
+}
+
+.e-post-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 26px 26px;
+}
+
+.e-post-title {
+  margin: 14px 0 10px;
+  font: 700 clamp(19px, 1.5vw, 22px)/1.25 var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+.e-post-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.e-post-body p {
+  font-size: 15px;
+  color: var(--ink-700);
+}
+
+.e-post-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Date row sits at the bottom of every card */
+.e-post-body .e-post-meta {
+  align-self: stretch;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--ink-600);
+}
+
+.e-post .e-post-excerpt {
+  margin-bottom: 16px;
+}
+
+/* Case study: photo with text below, no card frame (as in Design 4) */
+.e-cases {
+  display: grid;
+  gap: 28px;
+}
+
+.e-case {
+  position: relative;
+}
+
+.e-case-photo {
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+}
+
+.e-case .e-post-body {
+  padding: 20px 0 0;
+}
+
+.e-case .e-post-meta {
+  margin-top: 16px;
+}
+
+.e-posts-grid {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 48rem) {
+  .e-cases,
+  .e-posts-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

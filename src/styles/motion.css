@@ -1,0 +1,165 @@
+/* Entrance and scroll animations. Hidden states apply only once JS has added `.js` to <html>,
+   so content stays visible if scripts fail. */
+
+/* Hero items fade up in sequence (--d sets the step) */
+.hero-in {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: heroIn 0.7s var(--ease) forwards;
+  animation-delay: calc(var(--d, 0) * 90ms + 0.1s);
+}
+
+@keyframes heroIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Headline words rise in */
+[data-split] .w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.06em;
+}
+
+[data-split] .w > span {
+  display: inline-block;
+  transform: translateY(105%);
+  animation: wordUp 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: calc(var(--i) * 70ms + 0.15s);
+}
+
+@keyframes wordUp {
+  to {
+    transform: none;
+  }
+}
+
+/* Reveal on scroll */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s var(--e-ease), transform 0.9s var(--e-ease);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Photo wipe */
+.wipe {
+  --radius: 18px;
+}
+
+.js .wipe {
+  clip-path: inset(0 100% 0 0 round var(--radius));
+  transition: clip-path 1s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.js .wipe img {
+  transform: scale(1.15);
+  transition: transform 1.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.js .wipe.is-visible {
+  clip-path: inset(0 0 0 0 round var(--radius));
+}
+
+.js .wipe.is-visible img {
+  transform: none;
+}
+
+/* Looping animations pause while their block is off screen */
+.anim-off,
+.anim-off *,
+.anim-off ::before,
+.anim-off ::after {
+  animation-play-state: paused !important;
+}
+
+/* Scroll progress bar and back-to-top button */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 90;
+  pointer-events: none;
+}
+
+.scroll-progress span {
+  display: block;
+  height: 100%;
+  background: var(--gold);
+  transform-origin: left;
+  transform: scaleX(var(--p, 0));
+}
+
+.to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+  color: var(--ink-950);
+  box-shadow: var(--shadow-menu);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease), background 0.15s;
+}
+
+.to-top.is-shown {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.to-top:hover {
+  background: var(--gold-soft);
+  color: var(--ink-950);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation: none !important;
+  }
+
+  .hero-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-split] .w > span {
+    transform: none;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .js .wipe,
+  .js .wipe.is-visible {
+    clip-path: none;
+    transition: none;
+  }
+
+  .js .wipe img {
+    transform: none;
+    transition: none;
+  }
+}

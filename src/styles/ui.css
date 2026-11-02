@@ -1,0 +1,308 @@
+/* Shared editorial primitives: kicker, headings, section heads, buttons and links. */
+
+/* ---------- Typography ---------- */
+.e-kicker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font: 700 12px/1.2 var(--font-body);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brand-600);
+}
+
+.e-kicker-rule {
+  width: 44px;
+  height: 1px;
+  background: var(--gold);
+  flex: none;
+}
+
+.on-dark .e-kicker {
+  color: var(--gold);
+}
+
+.e-h2 {
+  font: 700 clamp(30px, 3.9vw, 56px)/1.08 var(--font-display);
+  letter-spacing: -0.03em;
+  color: var(--ink-900);
+  margin-top: 18px;
+  text-wrap: balance;
+}
+
+.e-lead {
+  font: 500 clamp(17px, 1.5vw, 21px)/1.55 var(--font-body);
+  color: var(--ink-800);
+}
+
+.e-body {
+  color: var(--ink-700);
+}
+
+/* ---------- Section scaffolding ---------- */
+.e-section {
+  position: relative;
+  padding: var(--e-sec) 0;
+}
+
+.e-section--alt {
+  background: var(--card);
+  border-block: 1px solid var(--line);
+}
+
+.e-section--tint {
+  background: #eaf6f2;
+}
+
+.e-sec-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px 48px;
+  padding-bottom: 32px;
+  margin-bottom: clamp(40px, 5vw, 72px);
+  border-bottom: 1px solid var(--line);
+}
+
+.e-sec-head > div:first-child {
+  max-width: 50rem;
+}
+
+/* Heading left; intro + action right, bottom-aligned */
+.e-sec-head--split .e-sec-aside {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+  max-width: 34rem;
+}
+
+.e-sec-head--split .e-sec-aside > .e-link,
+.e-sec-head--split .e-sec-aside > .e-btn {
+  margin-top: 8px;
+}
+
+@media (min-width: 64rem) {
+  .e-sec-head--split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: end;
+    gap: 24px 72px;
+  }
+
+  .e-sec-head--split .e-sec-aside {
+    justify-self: end;
+    width: 100%;
+  }
+}
+
+.e-sec-intro {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-700);
+}
+
+.on-dark .e-sec-head {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.on-dark .e-sec-intro {
+  color: var(--on-dark-text);
+}
+
+/* Makes a whole card clickable from one link inside it */
+.e-stretch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* ---------- Buttons ---------- */
+.e-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 56px;
+  padding: 0 28px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font: 700 15px/1 var(--font-body);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.3s var(--e-ease), box-shadow 0.3s;
+}
+
+.e-btn:hover {
+  transform: translateY(-2px);
+}
+
+.e-btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+  transform: none;
+}
+
+/* Button with an arrow circle: the circle sits an equal 8px from the top, bottom and right edges */
+.e-btn--icon {
+  padding-right: 7px; /* + 1px border = 8px, matching top and bottom */
+}
+
+.e-btn-ic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  transition: background 0.3s;
+}
+
+.e-btn-ic svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s var(--e-ease);
+}
+
+/* The arrow stays straight and simply moves forward */
+.e-btn:hover .e-btn-ic svg {
+  transform: translateX(3px);
+}
+
+.e-btn--solid {
+  background: var(--brand-600);
+  color: #fff;
+  box-shadow: 0 18px 36px -18px rgba(13, 124, 116, 0.85);
+}
+
+.e-btn--solid:hover {
+  background: var(--ink-900);
+  color: #fff;
+}
+
+.e-btn--line {
+  border-color: var(--ink-900);
+  color: var(--ink-900);
+  background: transparent;
+}
+
+.e-btn--line:hover {
+  background: var(--ink-900);
+  color: var(--paper);
+}
+
+.on-dark .e-btn--line {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+
+.on-dark .e-btn--line:hover {
+  background: #fff;
+  color: var(--ink-950);
+}
+
+.e-btn--gold {
+  background: var(--gold);
+  color: var(--ink-950);
+  box-shadow: 0 18px 40px -18px rgba(255, 125, 92, 0.8);
+}
+
+.e-btn--gold .e-btn-ic {
+  background: rgba(4, 30, 36, 0.1);
+}
+
+.e-btn--gold:hover {
+  background: var(--gold-soft);
+  color: var(--ink-950);
+}
+
+.e-btn--sm {
+  min-height: 40px;
+  padding: 0 22px;
+  font-size: 15px;
+}
+
+/* ---------- Links ---------- */
+.e-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 700 15px/1.3 var(--font-body);
+  color: var(--brand-600);
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  padding-bottom: 3px;
+  transition: background-size 0.4s var(--e-ease), color 0.2s;
+}
+
+.e-link:hover {
+  background-size: 100% 1px;
+  color: var(--ink-900);
+}
+
+.on-dark .e-link {
+  color: var(--gold);
+}
+
+.on-dark .e-link:hover {
+  color: #fff;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.15s var(--ease);
+}
+
+.e-link:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ---------- Small text link used in menus ---------- */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--brand-600);
+  text-decoration: none;
+}
+
+.text-link:hover {
+  color: var(--brand-700);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.text-link:hover .arrow {
+  transform: translateX(2px);
+}
+
+.eyebrow {
+  font: 600 13px/1.4 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-600);
+}
+
+/* ---------- Tags ---------- */
+.e-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  font: 800 10.5px/1 var(--font-body);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand-600);
+}
+
+.on-dark .e-tag {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--gold);
+}
