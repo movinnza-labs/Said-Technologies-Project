@@ -82,7 +82,10 @@
   background: none;
 }
 
+/* Extend the painted box below the baseline so descenders (g, y, p) keep the gradient */
 .e-display em .w > span {
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
   background: linear-gradient(100deg, #0d7c74, #14a395 45%, #0ea5c6);
   -webkit-background-clip: text;
   background-clip: text;
