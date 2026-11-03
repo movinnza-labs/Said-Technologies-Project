@@ -38,7 +38,17 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     importMap: { baseDir: path.resolve(dirname) },
-    meta: { titleSuffix: ' · SAID Technologies CMS' },
+    meta: {
+      titleSuffix: ' · SAID Technologies CMS',
+      icons: [{ rel: 'icon', type: 'image/jpeg', url: '/assets/img/favicon-32x32.jpg' }],
+    },
+    // SAID branding; styles live in app/(payload)/custom.scss
+    components: {
+      graphics: { Logo: '/components/admin/Logo#Logo', Icon: '/components/admin/Icon#Icon' },
+      beforeDashboard: ['/components/admin/Welcome#Welcome'],
+      actions: ['/components/admin/LogoutButton#LogoutButton'],
+      beforeNavLinks: ['/components/admin/NavBrand#NavBrand'],
+    },
     livePreview: {
       breakpoints: [
         { label: 'Mobile', name: 'mobile', width: 390, height: 844 },
