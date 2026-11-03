@@ -48,6 +48,11 @@ const alts: Record<string, string> = {
   'card-presentation.jpg': 'Presenter sharing ideas with a team',
   'card-auditorium.jpg': 'Audience in an auditorium',
   'education-classroom.jpg': 'Students learning in a classroom',
+  'ind-real-estate.jpg': 'High-rise residential towers and a tower crane on a building site',
+  'ind-gcc.jpg': 'Team in a meeting room connected to colleagues on a large screen',
+  'ind-automobile.jpg': 'Robotic arms on an automotive assembly line',
+  'ind-bfsi.jpg': 'Modern glass corporate headquarters lit at dusk',
+  'industries-hub.jpg': 'Mumbai business district skyline',
 }
 
 const serviceImages: Record<string, string> = {
@@ -98,7 +103,7 @@ const industryImages: Record<string, string> = {
   'it-ites': 'ind-it.jpg',
   media: 'ind-media.jpg',
   startups: 'ind-startups.jpg',
-  'real-estate-and-infrastructure': 'card-campus.jpg',
+  'real-estate-and-infrastructure': 'ind-real-estate.jpg',
 }
 const industryIcons: Record<string, string> = {
   'global-capability-centres': 'globe',
@@ -114,7 +119,7 @@ const industryIcons: Record<string, string> = {
 }
 const pageImages: Record<string, string> = {
   '/what-we-do': 'card-servers.jpg',
-  '/industries': 'card-campus.jpg',
+  '/industries': 'industries-hub.jpg',
   '/education': 'education-classroom.jpg',
   '/insights': 'card-presentation.jpg',
 }
@@ -127,7 +132,7 @@ async function uploadImages(payload: Payload) {
       alts[file] ||
       file
         .replace(/\.(jpe?g|png)$/i, '')
-        .replace(/^(svc-\d+|ind|edu|card)-/, '')
+        .replace(/^(svc-\d+|ind|edu|card|page)-/, '')
         .replace(/-/g, ' ')
     const doc = await payload.create({ collection: 'media', data: { alt }, filePath: path.join(IMG_DIR, file), context: ctx })
     ids[file] = doc.id as number
@@ -197,7 +202,8 @@ export async function runSeed(payload: Payload, { force = false } = {}): Promise
   ] as const) {
     for (const d of content[collection]) {
       const top = !d.parentPath
-      d.image = top ? images[d.slug!] : undefined
+      // Sub-pages use their own photo (page-<slug>.jpg) when one is bundled, otherwise the parent's
+      d.image = top ? images[d.slug!] : fs.existsSync(path.join(IMG_DIR, `page-${d.slug}.jpg`)) ? `page-${d.slug}.jpg` : undefined
       const parentSlug = d.parentPath?.split('/').pop()
       await create(collection, d, {
         tagline: d.tagline,

@@ -1265,7 +1265,8 @@
       "it-ites",
       "media",
       "startups"
-     ]
+     ],
+     "footnote": "Google Cloud, Amazon Web Services and Microsoft Azure are trademarks of their respective owners. Their mention describes platforms that can be evaluated and does not indicate an authorised partnership."
     },
     {
      "blockType": "cta",
@@ -6175,7 +6176,8 @@
      "chips": [
       "it-ites",
       "startups"
-     ]
+     ],
+     "footnote": "Google Workspace is a trademark of Google LLC. Its mention does not indicate an authorised partnership."
     },
     {
      "blockType": "cta",
@@ -11380,8 +11382,49 @@
      "eyebrow": "",
      "heading": "Explore Our Insights",
      "intro": "",
-     "source": "children",
-     "style": "cards"
+     "source": "manual",
+     "style": "cards",
+     "cards": [
+      {
+       "title": "Blogs",
+       "text": "Original articles that explain technology concepts, planning considerations and practical applications.",
+       "link": {
+        "type": "custom",
+        "label": "Read Our Articles",
+        "url": "/insights/blogs"
+       }
+      },
+      {
+       "label": "Coming soon",
+       "title": "Case Studies",
+       "text": "Approved customer stories describing the requirement, agreed solution and verified outcomes.",
+       "link": {
+        "type": "custom",
+        "label": "Explore Case Studies",
+        "url": "/insights/case-studies"
+       }
+      },
+      {
+       "label": "Coming soon",
+       "title": "Events",
+       "text": "Confirmed workshops, demonstrations, webinars and institutional engagements.",
+       "link": {
+        "type": "custom",
+        "label": "View Upcoming Events",
+        "url": "/insights/events"
+       }
+      },
+      {
+       "label": "Coming soon",
+       "title": "News",
+       "text": "Verified company announcements and developments.",
+       "link": {
+        "type": "custom",
+        "label": "Read Company Updates",
+        "url": "/insights/news"
+       }
+      }
+     ]
     },
     {
      "blockType": "cta",
