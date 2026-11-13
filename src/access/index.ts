@@ -1,10 +1,8 @@
-import type { Access, FieldAccess } from 'payload'
+import type { Access } from 'payload'
 
 export const anyone: Access = () => true
 
 export const authenticated: Access = ({ req: { user } }) => Boolean(user)
-
-export const authenticatedField: FieldAccess = ({ req: { user } }) => Boolean(user)
 
 /** Signed-in users see drafts; everyone else only sees published documents. */
 export const authenticatedOrPublished: Access = ({ req: { user } }) => {

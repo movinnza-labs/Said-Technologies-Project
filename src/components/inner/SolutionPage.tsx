@@ -10,13 +10,13 @@ import { JsonLd } from '../ui/JsonLd'
 import { PageHero } from './PageHero'
 import '../blocks/Blocks.css'
 
-export const sectionInfo: Record<SolutionCollection, { label: string; href: string; fallback: string; others: string }> = {
+const sectionInfo: Record<SolutionCollection, { label: string; href: string; fallback: string; others: string }> = {
   services: { label: 'What We Do', href: '/what-we-do', fallback: '/assets/img/card-servers.jpg', others: 'Other Solutions' },
   industries: { label: 'Industries', href: '/industries', fallback: '/assets/img/card-campus.jpg', others: 'Other Industries' },
   education: { label: 'Education', href: '/education', fallback: '/assets/img/card-lab.jpg', others: 'Other Education Areas' },
 }
 
-export const solutionCrumbs = (collection: SolutionCollection, doc: SolutionDoc): Crumb[] => {
+const solutionCrumbs = (collection: SolutionCollection, doc: SolutionDoc): Crumb[] => {
   const info = sectionInfo[collection]
   const trail =
     'breadcrumbs' in doc && doc.breadcrumbs?.length

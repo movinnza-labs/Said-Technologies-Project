@@ -8,7 +8,7 @@ import { Kicker } from '../ui/Kicker'
 import { CmsAction } from '../ui/Links'
 import './PageHero.css'
 
-export type HeroData = {
+type HeroData = {
   eyebrow?: string | null
   heading?: string | null
   lead?: string | null

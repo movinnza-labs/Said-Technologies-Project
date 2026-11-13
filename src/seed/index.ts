@@ -1,8 +1,7 @@
 /**
- * CLI entry for local seeding:
+ * CLI entry for seeding (locally and on the server):
  *   npm run seed                 – only runs on an empty database
  *   SEED_FORCE=true npm run seed – deletes existing content first
- * On Railway, use the one-time POST /next/seed endpoint instead (see README).
  */
 import { getPayload } from 'payload'
 import config from '../payload.config'

@@ -2,7 +2,7 @@ import { getPayloadClient } from '@/lib/payload'
 
 export const dynamic = 'force-dynamic'
 
-/** Railway health check: confirms the app is up and the database answers. */
+/** Health check (used by deploy\windows\deploy.ps1): confirms the app is up and the database answers. */
 export async function GET() {
   try {
     const payload = await getPayloadClient()

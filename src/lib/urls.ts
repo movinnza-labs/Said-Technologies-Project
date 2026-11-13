@@ -1,8 +1,7 @@
-/** Public base URL, without a trailing slash. Railway exposes RAILWAY_PUBLIC_DOMAIN automatically. */
+/** Public base URL, without a trailing slash. */
 export const getSiteUrl = (): string => {
   const explicit = process.env.NEXT_PUBLIC_SERVER_URL
   if (explicit) return explicit.replace(/\/$/, '')
-  if (process.env.RAILWAY_PUBLIC_DOMAIN) return `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`
   return 'http://localhost:3000'
 }
 
@@ -20,7 +19,7 @@ export type RoutableDoc = {
 }
 
 /** Where each collection lives on the site. Nested collections build on their breadcrumb trail. */
-export const collectionBase: Record<string, string> = {
+const collectionBase: Record<string, string> = {
   pages: '',
   services: '/what-we-do',
   education: '/education',
@@ -28,7 +27,7 @@ export const collectionBase: Record<string, string> = {
   'case-studies': '/insights/case-studies',
 }
 
-export const postTypePath: Record<string, string> = {
+const postTypePath: Record<string, string> = {
   blog: 'blogs',
   news: 'news',
   event: 'events',

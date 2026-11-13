@@ -1,7 +1,7 @@
 import { Icon } from '../ui/Icon'
 import './Steps.css'
 
-export type Step = { title: string; text?: string | null; icon?: string | null }
+type Step = { title: string; text?: string | null; icon?: string | null }
 
 const defaultIcons = ['search', 'plan', 'rocket', 'check']
 

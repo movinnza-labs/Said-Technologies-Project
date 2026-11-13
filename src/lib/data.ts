@@ -4,7 +4,7 @@ import { getPayloadClient, isDraft, safeQuery } from './payload'
 
 export type SolutionCollection = 'services' | 'industries' | 'education'
 export type SolutionDoc = Service | Industry | Education
-export type NestedCollection = 'pages' | 'services' | 'education'
+type NestedCollection = 'pages' | 'services' | 'education'
 
 type GlobalSlug = 'homepage' | 'header' | 'footer' | 'site-settings'
 

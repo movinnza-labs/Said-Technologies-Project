@@ -4,8 +4,8 @@ import { anyone, authenticated } from '../access'
 import { revalidateAfterChange } from '../hooks/revalidate'
 
 /**
- * Images. Files are written to MEDIA_DIR; on Railway, mount a volume there so uploads
- * survive redeploys (see README).
+ * Images. Files are written to MEDIA_DIR, which lives outside the app folder so uploads
+ * survive redeploys.
  */
 export const Media: CollectionConfig = {
   slug: 'media',

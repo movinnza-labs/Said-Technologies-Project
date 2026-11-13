@@ -232,12 +232,6 @@
   color: var(--ink-950);
 }
 
-.e-btn--sm {
-  min-height: 40px;
-  padding: 0 22px;
-  font-size: 15px;
-}
-
 /* ---------- Links ---------- */
 .e-link {
   display: inline-flex;

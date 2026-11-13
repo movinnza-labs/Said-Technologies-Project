@@ -1,7 +1,7 @@
 import { Icon } from '../ui/Icon'
 import './Ticker.css'
 
-export type TickerItem = { text: string; icon?: string | null }
+type TickerItem = { text: string; icon?: string | null }
 
 /** Decorative marquee of capabilities; the same names are real links in the menus and sections. */
 export function Ticker({ items }: { items: TickerItem[] }) {

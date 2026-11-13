@@ -3,7 +3,7 @@ import type { ImageSource } from '@/lib/media'
 import { CmsImage } from '../ui/CmsImage'
 import './Industries.css'
 
-export type MagItem = { title: string; text?: string | null; href: string; image: ImageSource | null }
+type MagItem = { title: string; text?: string | null; href: string; image: ImageSource | null }
 
 /** Photo cards in an editorial rhythm (wide / narrow); designed around ten items. */
 export function MagazineGrid({ items }: { items: MagItem[] }) {
