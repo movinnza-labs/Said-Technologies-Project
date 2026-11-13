@@ -190,7 +190,8 @@ export function EnquiryForm({ kind, options, roles = [] }: { kind: 'enquiry' | '
               </select>
             </Field>
             <Field label="Specific service or solution" name="solution" optional>
-              <select {...inputProps('solution')} defaultValue={params.get('solution') ?? ''} disabled={!selectedArea?.children.length} key={area}>
+              {/* key must precede the spread, or JSX falls back to createElement and React flags a false missing-key warning */}
+              <select key={area} {...inputProps('solution')} defaultValue={params.get('solution') ?? ''} disabled={!selectedArea?.children.length}>
                 <option value="">{selectedArea?.children.length ? 'Select a solution' : 'Choose an area first'}</option>
                 {selectedArea?.children.map((c) => (
                   <option key={c.value} value={c.value}>

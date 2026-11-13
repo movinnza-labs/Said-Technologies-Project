@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
+import localFont from 'next/font/local'
 import Script from 'next/script'
 import type { ReactNode } from 'react'
 import type { SiteSetting } from '@/payload-types'
@@ -19,12 +19,21 @@ import '@/styles/ui.css'
 import '@/styles/motion.css'
 import './frontend.css'
 
-const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-inter', display: 'swap' })
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
+// Self-hosted (Latin, variable weight; SIL Open Font License) rather than next/font/google:
+// Turbopack on Windows fails to build Google fonts, and the build then needs no internet access.
+const inter = localFont({
+  src: './fonts/inter-latin-var.woff2',
+  weight: '400 700',
+  variable: '--font-inter',
+  display: 'swap',
+  fallback: ['system-ui', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+})
+const jakarta = localFont({
+  src: './fonts/plus-jakarta-sans-latin-var.woff2',
+  weight: '500 800',
   variable: '--font-jakarta',
   display: 'swap',
+  fallback: ['system-ui', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
 })
 
 export const metadata: Metadata = {

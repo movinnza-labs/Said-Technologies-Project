@@ -6,7 +6,7 @@ import { Kicker } from '../ui/Kicker'
 import { TextLink } from '../ui/Links'
 import './About.css'
 
-export type AboutProps = {
+type AboutProps = {
   id?: string
   /** Optional section id for in-page links. */
   anchor?: string | null

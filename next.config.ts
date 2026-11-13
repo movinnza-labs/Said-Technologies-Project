@@ -14,12 +14,22 @@ const securityHeaders = [
   { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
 ]
 
+// Behind the IIS reverse proxy the app may see 127.0.0.1 as its host, so name the public
+// host explicitly or server actions (enquiry and resume forms) are rejected as cross-origin.
+const publicHost = (() => {
+  try {
+    return process.env.NEXT_PUBLIC_SERVER_URL ? new URL(process.env.NEXT_PUBLIC_SERVER_URL).host : undefined
+  } catch {
+    return undefined
+  }
+})()
+
 const nextConfig: NextConfig = {
-  // Small self-contained server bundle: the Docker image ships only this
+  // Small self-contained server bundle: deploy\windows\deploy.ps1 ships only this
   output: 'standalone',
   // Keep secrets, uploads and repo files out of the traced server bundle
   outputFileTracingExcludes: {
-    '*': ['.env*', 'media/**', 'README.md', 'Dockerfile', 'railway.json', '*.tsbuildinfo', 'eslint.config.mjs'],
+    '*': ['.env*', 'media/**', 'deploy/**', 'README.md', '*.tsbuildinfo', 'eslint.config.mjs'],
   },
   poweredByHeader: false,
   reactStrictMode: true,
@@ -32,7 +42,10 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     cpus: 4, // limits build workers (and the DB connections they could open)
-    serverActions: { bodySizeLimit: '6mb' }, // resumes up to 5 MB
+    serverActions: {
+      bodySizeLimit: '6mb', // resumes up to 5 MB
+      ...(publicHost ? { allowedOrigins: [publicHost] } : {}),
+    },
   },
   async headers() {
     return [
@@ -43,14 +56,6 @@ const nextConfig: NextConfig = {
         headers: [{ key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=86400' }],
       },
     ]
-  },
-  webpack: (webpackConfig) => {
-    webpackConfig.resolve.extensionAlias = {
-      '.cjs': ['.cts', '.cjs'],
-      '.js': ['.ts', '.tsx', '.js', '.jsx'],
-      '.mjs': ['.mts', '.mjs'],
-    }
-    return webpackConfig
   },
   turbopack: {
     root: path.resolve(dirname),

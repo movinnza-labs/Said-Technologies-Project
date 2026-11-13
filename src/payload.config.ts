@@ -28,7 +28,7 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 if (!process.env.PAYLOAD_SECRET && process.env.NODE_ENV === 'production') {
-  throw new Error('PAYLOAD_SECRET is not set. Add it to the Railway service variables.')
+  throw new Error('PAYLOAD_SECRET is not set. Add it to .env.')
 }
 
 type SeoDoc = { title?: string; excerpt?: string; hero?: { lead?: string } } & Parameters<typeof docPath>[1]
@@ -64,13 +64,15 @@ export default buildConfig({
   typescript: { outputFile: path.resolve(dirname, 'payload-types.ts') },
   db: postgresAdapter({
     pool: {
-      // Use Railway's private URL at runtime; the public one is billed as egress.
       connectionString: process.env.DATABASE_URL || '',
       // A small site needs few connections; each one costs memory on both ends.
       max: Number(process.env.DATABASE_POOL_MAX || 5),
       idleTimeoutMillis: 30_000,
     },
-    push: process.env.NODE_ENV !== 'production' && process.env.PAYLOAD_DB_PUSH !== 'false',
+    // Only `next dev` pushes schema changes straight to the database. CLI commands (`npm run seed`)
+    // must not: a pushed database makes the production server stop at an interactive
+    // "data loss" prompt on its next start. The server's schema comes from migrations only.
+    push: process.env.NODE_ENV === 'development' && process.env.PAYLOAD_DB_PUSH !== 'false',
     migrationDir: path.resolve(dirname, 'migrations'),
     // In production, pending migrations run once when the server starts (never during the build).
     prodMigrations: migrations,

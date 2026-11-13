@@ -14,7 +14,7 @@
 .env.*
 !.env.example
 
-# uploaded media and resumes (stored on the Railway volume, not in git)
+# uploaded media and resumes (stored in MEDIA_DIR on the server, not in git)
 /media
 
 # typescript

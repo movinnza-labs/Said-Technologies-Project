@@ -1,6 +1,6 @@
 /**
  * Seeds the CMS with the SAID Technologies content and Design 4 imagery.
- * Used by `npm run seed` (src/seed/index.ts) and the one-time POST /next/seed endpoint.
+ * Used by `npm run seed` (src/seed/index.ts).
  *
  * SEED_ADMIN_EMAIL / SEED_ADMIN_PASSWORD create the first admin user if none exists.
  */

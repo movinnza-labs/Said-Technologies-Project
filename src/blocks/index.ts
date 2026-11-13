@@ -14,7 +14,7 @@ const anchor: Field = {
 }
 
 /** Heading with rich text; "split" puts the heading beside the copy, "stacked" suits long legal text. */
-export const ContentBlock: Block = {
+const ContentBlock: Block = {
   slug: 'content',
   labels: { singular: 'Text section', plural: 'Text sections' },
   fields: [
@@ -34,7 +34,7 @@ export const ContentBlock: Block = {
 }
 
 /** Image beside copy with an optional pull quote, as in the homepage About section. */
-export const MediaTextBlock: Block = {
+const MediaTextBlock: Block = {
   slug: 'mediaText',
   labels: { singular: 'Image and text', plural: 'Image and text' },
   fields: [
@@ -51,7 +51,7 @@ export const MediaTextBlock: Block = {
 }
 
 /** Numbered list of short items (scope areas, focus areas, engagement checklists). */
-export const NumberedListBlock: Block = {
+const NumberedListBlock: Block = {
   slug: 'numberedList',
   labels: { singular: 'Numbered list', plural: 'Numbered lists' },
   fields: [
@@ -69,7 +69,7 @@ export const NumberedListBlock: Block = {
 }
 
 /** Card grid: hand-picked cards, or an automatic list from a collection. */
-export const CardGridBlock: Block = {
+const CardGridBlock: Block = {
   slug: 'cardGrid',
   labels: { singular: 'Card grid', plural: 'Card grids' },
   fields: [
@@ -119,7 +119,7 @@ export const CardGridBlock: Block = {
 }
 
 /** Step-by-step approach (Understand → Plan → Enable). */
-export const ProcessBlock: Block = {
+const ProcessBlock: Block = {
   slug: 'process',
   labels: { singular: 'Process steps', plural: 'Process steps' },
   fields: [
@@ -137,7 +137,7 @@ export const ProcessBlock: Block = {
 }
 
 /** Closing call-to-action band. */
-export const CallToActionBlock: Block = {
+const CallToActionBlock: Block = {
   slug: 'cta',
   labels: { singular: 'Call to action', plural: 'Calls to action' },
   fields: [
@@ -149,7 +149,7 @@ export const CallToActionBlock: Block = {
 }
 
 /** Enquiry form (business / education) or career profile form with optional side cards. */
-export const EnquiryFormBlock: Block = {
+const EnquiryFormBlock: Block = {
   slug: 'enquiryForm',
   labels: { singular: 'Enquiry form', plural: 'Enquiry forms' },
   fields: [
@@ -185,7 +185,7 @@ export const EnquiryFormBlock: Block = {
 }
 
 /** Latest posts or case studies. */
-export const InsightsFeedBlock: Block = {
+const InsightsFeedBlock: Block = {
   slug: 'insightsFeed',
   labels: { singular: 'Insights feed', plural: 'Insights feeds' },
   fields: [
@@ -212,7 +212,7 @@ export const InsightsFeedBlock: Block = {
   ],
 }
 
-export const layoutBlocks: Block[] = [
+const layoutBlocks: Block[] = [
   ContentBlock,
   MediaTextBlock,
   NumberedListBlock,

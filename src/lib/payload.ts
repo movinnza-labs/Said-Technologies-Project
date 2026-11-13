@@ -16,8 +16,8 @@ export const isDraft = async (): Promise<boolean> => {
 const isBuildPhase = () => process.env.NEXT_PHASE === 'phase-production-build'
 
 /**
- * Railway builds run before the database is reachable. During `next build` a failed query
- * returns the fallback so static shells still compile; at runtime errors propagate normally.
+ * The build doesn't need the database. During `next build` a failed query returns the
+ * fallback so static shells still compile; at runtime errors propagate normally.
  */
 export async function safeQuery<T>(query: () => Promise<T>, fallback: T): Promise<T> {
   try {

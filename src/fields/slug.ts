@@ -1,6 +1,6 @@
 import type { Field, FieldHook } from 'payload'
 
-export const slugify = (value: string): string =>
+const slugify = (value: string): string =>
   value
     .toLowerCase()
     .normalize('NFKD')

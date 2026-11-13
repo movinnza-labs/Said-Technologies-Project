@@ -1,6 +1,6 @@
 import type { Field, GroupField } from 'payload'
 
-export const linkableCollections = ['pages', 'services', 'industries', 'education', 'posts', 'case-studies'] as const
+const linkableCollections = ['pages', 'services', 'industries', 'education', 'posts', 'case-studies'] as const
 
 type LinkOptions = {
   name?: string
